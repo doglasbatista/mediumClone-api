@@ -5,6 +5,10 @@ RSpec.describe User do
     it { should validate_presence_of(:username) }
   end
 
+  describe 'association' do
+    it { should have_many(:stories) }
+  end
+
   describe 'generate_access_token' do
     before do
       @user = FactoryGirl.create(:user)

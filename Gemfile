@@ -8,7 +8,6 @@ gem 'devise'
 gem 'rack-cors', require: 'rack/cors'
 
 group :development do
-  gem 'spring', :group => :development
   gem 'thin'
 end
 
