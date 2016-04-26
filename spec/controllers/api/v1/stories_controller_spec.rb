@@ -20,4 +20,21 @@ RSpec.describe Api::V1::StoriesController do
       expect(JSON.parse(response.body)).to have_key("errors")
     end
   end
+
+  describe 'GET #show' do
+    before do
+      @user = FactoryGirl.create(:user)
+      @story = FactoryGirl.create(:story, user_id: @user.id)
+    end
+
+    it 'found' do
+      get :show, id: @story.id
+      expect(JSON.parse(response.body)['title']).to eql(@story[:title])
+    end
+
+    it 'not found' do
+      get :show, id: 2
+      expect(JSON.parse(response.body)).to have_key("errors")
+    end
+  end
 end

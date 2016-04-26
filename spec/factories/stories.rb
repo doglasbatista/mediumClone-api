@@ -3,4 +3,6 @@ FactoryGirl.define do
     title Faker::Name.title
     body Faker::Lorem.sentence(10)
   end
+
+
 end
