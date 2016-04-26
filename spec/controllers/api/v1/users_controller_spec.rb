@@ -40,5 +40,11 @@ RSpec.describe Api::V1::UsersController do
       patch :update, { id: @user.id, user: { email: '' } }
       expect(JSON.parse(response.body)).to have_key("errors")
     end
+
+    it 'without authorization' do
+      request.headers["Authorization"] = '100:bfjsbadfbasdjk'
+      patch :update, { id: @user.id, user: { email: '' } }
+      expect(JSON.parse(response.body)).to have_key("errors")
+    end
   end
 end

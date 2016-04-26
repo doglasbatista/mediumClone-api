@@ -14,7 +14,7 @@ class Api::V1::ApplicationController < ApplicationController
   def auth_with_access_token(access_token)
     return auth_error unless access_token.include?(":")
 
-    user = User.find(access_token.split(":").first)
+    user = User.find_by(id: access_token.split(":").first)
 
     if user && Devise.secure_compare(user.access_token, access_token)
       sign_in(user, store: false)
