@@ -1,0 +1,6 @@
+en:
+  application:
+    errors:
+      unauthorized: "Without authorization"
+      invalid_login: "Invalid Login"
+      not_found: "Not Found"
