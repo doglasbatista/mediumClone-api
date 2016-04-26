@@ -28,6 +28,7 @@ RSpec.describe Api::V1::UsersController do
   describe 'PATCH #update' do
     before do
       @user = FactoryGirl.create(:batman)
+      request.headers["Authorization"] = @user.access_token
     end
 
     it 'valid params' do
