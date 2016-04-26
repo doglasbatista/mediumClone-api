@@ -24,4 +24,20 @@ RSpec.describe Api::V1::UsersController do
     end
 
   end
+
+  describe 'PATCH #update' do
+    before do
+      @user = FactoryGirl.create(:batman)
+    end
+
+    it 'valid params' do
+      patch :update, { id: @user.id, user: { email: 'bat@wayne.corp' } }
+      expect(JSON.parse(response.body)['email']).to eql('bat@wayne.corp')
+    end
+
+    it 'invalid params' do
+      patch :update, { id: @user.id, user: { email: '' } }
+      expect(JSON.parse(response.body)).to have_key("errors")
+    end
+  end
 end
