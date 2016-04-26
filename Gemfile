@@ -5,7 +5,7 @@ gem 'rails', '4.2.5.2'
 gem 'rails-api'
 gem 'active_model_serializers'
 gem 'devise'
-gem 'rack-cors',            require: 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development do
   gem 'spring', :group => :development
