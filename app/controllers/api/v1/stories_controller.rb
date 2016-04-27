@@ -12,9 +12,9 @@ class Api::V1::StoriesController < Api::V1::ApplicationController
   end
 
   def show
-    story = Story.find_by(id:params[:id])
+    story = Story.find_by(id: params[:id])
     if story
-      render json: story, status: :ok
+      render json: story, serializer: StorySerializer
     else
       render json: { errors: I18n.t('application.errors.not_found') }, status: 404
     end

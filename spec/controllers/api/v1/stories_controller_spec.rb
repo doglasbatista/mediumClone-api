@@ -10,8 +10,8 @@ RSpec.describe Api::V1::StoriesController do
 
     it 'valid params' do
       post :create, {story: @story_params}
-      expect(JSON.parse(response.body)['title']).to eql(@story_params[:title])
-      expect(JSON.parse(response.body)['user_id']).to eql(@user.id)
+      expect(JSON.parse(response.body)['story']['title']).to eql(@story_params[:title])
+      expect(JSON.parse(response.body)['story']['user']['username']).to eql(@user.username)
     end
 
     it 'invalid params' do
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::StoriesController do
 
     it 'found' do
       get :show, id: @story.id
-      expect(JSON.parse(response.body)['title']).to eql(@story[:title])
+      expect(JSON.parse(response.body)['story']['title']).to eql(@story[:title])
     end
 
     it 'not found' do

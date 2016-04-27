@@ -8,7 +8,7 @@ RSpec.describe Api::V1::SessionsController do
 
     it 'successful login' do
       post :create, { email: @user.email, password: @user.password }
-      expect(JSON.parse(response.body)['email']).to eql(@user.email)
+      expect(JSON.parse(response.body)['user']['email']).to eql(@user.email)
     end
 
     it 'unsuccessful login' do

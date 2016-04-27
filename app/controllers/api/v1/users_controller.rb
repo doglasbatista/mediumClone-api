@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::ApplicationController
   before_action :set_user, only: [:update]
-  skip_before_action :auth_user_from_token, only: [:create]
+  skip_before_action :auth_user_from_token, only: [:create, :show]
 
   def create
     user = User.new(user_params)
@@ -10,6 +10,11 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     else
       render json: { errors: user.errors }, status: :unprocessable_entity
     end
+  end
+
+  def show
+    stories = User.find(params[:id]).stories
+    render json: stories
   end
 
   def update

@@ -14,7 +14,7 @@ RSpec.describe Api::V1::UsersController do
 
     it 'post with valid params' do
       post :create, { user: @user_params }
-      expect(JSON.parse(response.body)['email']).to eql(@user_params[:email])
+      expect(JSON.parse(response.body)["user"]["email"]).to eql(@user_params[:email])
     end
 
     it 'post with invalid params' do
@@ -33,7 +33,7 @@ RSpec.describe Api::V1::UsersController do
 
     it 'valid params' do
       patch :update, { id: @user.id, user: { email: 'bat@wayne.corp' } }
-      expect(JSON.parse(response.body)['email']).to eql('bat@wayne.corp')
+      expect(JSON.parse(response.body)["user"]["email"]).to eql('bat@wayne.corp')
     end
 
     it 'invalid params' do
@@ -47,4 +47,18 @@ RSpec.describe Api::V1::UsersController do
       expect(JSON.parse(response.body)).to have_key("errors")
     end
   end
+
+  describe 'GET #show' do
+    before do
+      @user = FactoryGirl.create(:batman)
+      5.times { FactoryGirl.create(:story, user: @user) }
+    end
+
+    it 'display all stories' do
+      get :show, id: @user.id
+      expect(JSON.parse(response.body)['users'][0]['title']).to eql(@user.stories.first.title)
+      expect(JSON.parse(response.body)['users'][-1]['title']).to eql(@user.stories.last.title)
+    end
+  end
+
 end
