@@ -6,6 +6,7 @@ gem 'rails-api'
 gem 'active_model_serializers'
 gem 'devise'
 gem 'rack-cors', require: 'rack/cors'
+gem 'faker'
 
 group :development do
   gem 'thin'
@@ -13,7 +14,6 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'faker'
   gem 'pry-rails'
 end
 
