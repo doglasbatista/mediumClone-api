@@ -1,7 +1,7 @@
 User.create(
-  username: 'morcegao'
-  email: 'bruce@wayne.corp'
-  password: '123123123'
+  username: 'morcegao',
+  email: 'bruce@wayne.corp',
+  password: '123123123',
   password_confirmation: '123123123'
 )
 
