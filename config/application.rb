@@ -21,5 +21,9 @@ module MediumCloneApi
 
     config.i18n.load_path += Dir[File.join(Rails.root, 'config', 'locales', '**', '*.{rb,yml}')]
     config.active_record.raise_in_transactional_callbacks = true
+    config.action_dispatch.default_headers = {
+      'Access-Control-Allow-Origin' => 'http://localhost:3001',
+      'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
+    }
   end
 end
