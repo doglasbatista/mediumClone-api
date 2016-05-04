@@ -1,5 +1,10 @@
 class Api::V1::StoriesController < Api::V1::ApplicationController
-  skip_before_action :auth_user_from_token, only: [:show]
+  skip_before_action :auth_user_from_token, only: [:index, :show]
+
+  def index
+    stories = Story.all
+    render json: stories
+  end
 
   def create
     story = Story.new(story_params)
